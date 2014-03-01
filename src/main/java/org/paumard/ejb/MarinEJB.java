@@ -27,4 +27,14 @@ public class MarinEJB {
 		}
 		return marins;
 	}
+        @SuppressWarnings({ "unchecked", "rawtypes" })
+	public List deleteMarinByPrenom(Marin marin ){
+		
+		javax.persistence.Query q = em.createQuery("select Marin from Marin marin where marin.prenom =" +"'" +marin.getPrenom()+"'" );
+		List<Marin> marins = q.getResultList() ;
+		for (Marin marin1 : marins) {
+		   em.remove(marin1);
+		}
+		return marins;
+	}
 }
